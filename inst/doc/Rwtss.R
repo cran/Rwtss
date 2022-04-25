@@ -9,33 +9,40 @@ knitr::include_graphics(system.file("extdata/markdown/figures", "time_series.png
 
 ## ---- eval = FALSE------------------------------------------------------------
 #  # Connect to the WTSS server at INPE Brazil
-#  wtss_inpe <-  "http://www.esensing.dpi.inpe.br/wtss"
+#  wtss_inpe <-  "https://brazildatacube.dpi.inpe.br/wtss/"
 
 ## ---- eval = FALSE------------------------------------------------------------
 #  # Connect to the WTSS server at INPE Brazil
 #  Rwtss::list_coverages(wtss_inpe)
 
 ## ---- echo = FALSE------------------------------------------------------------
-paste(c("MOD13Q1", "MOD13Q1_M"))
+paste(c("MOD13Q1-6", "MYD13Q1-6"))
 
 ## ---- eval = FALSE------------------------------------------------------------
 #  # Connect to the WTSS server at INPE Brazil
-#  desc <- Rwtss::describe_coverage(wtss_inpe, name = "MOD13Q1")
+#  desc <- Rwtss::describe_coverage(wtss_inpe, name = "MOD13Q1-6")
 
 ## ---- echo = FALSE------------------------------------------------------------
 # Coverage description available in the wtss object
 cat("---------------------------------------------------------------------")
-cat("WTSS server URL = http://www.esensing.dpi.inpe.br/wtss")
-cat("Cube (coverage) = MOD13Q1")
-cat("Timeline - 452 time steps")
-cat("start_date: 2000-02-18 end_date: 2019-09-30")
+cat("WTSS server URL = https://brazildatacube.dpi.inpe.br/wtss")
+cat("Cube (coverage) = MOD13Q1-6")
+cat("Timeline - 508 time steps")
+cat("start_date: 2000-02-18 end_date: 2022-03-22")
 cat("---------------------------------------------------------------------")
 
 ## ---- eval = FALSE------------------------------------------------------------
 #  # Request a time series from the "MOD13Q1" coverage
-#  ndvi_ts   <- Rwtss::time_series(wtss_inpe, name = "MOD13Q1",
-#          attributes = c("ndvi","evi"), longitude = -45.00, latitude  = -12.00,
-#          start_date = "2000-02-18", end_date = "2016-12-18")
+#  ndvi_ts   <- Rwtss::time_series(
+#    URL = wtss_inpe,
+#    name = "MOD13Q1",
+#    attributes = c("NDVI","EVI"),
+#    longitude = -45.00,
+#    latitude  = -12.00,
+#    start_date = "2000-02-18",
+#    end_date = "2016-12-18",
+#    token = "YOUR-BDC-TOKEN"
+#  )
 
 ## ---- echo = FALSE------------------------------------------------------------
 ndvi_ts <- readRDS(file = system.file("extdata/ndvi_ts.rds", package = "Rwtss"))
